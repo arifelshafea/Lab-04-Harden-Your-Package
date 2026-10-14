@@ -32,5 +32,12 @@
   "unique_languages": [
     "English",
     "Japanese"
+  ],
+  "featured_shows": [
+    "How I Met Your Mother",
+    "American Horror Story",
+    "Homeland",
+    "The Fosters",
+    "The Walking Dead"
   ]
 }
