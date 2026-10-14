@@ -12,6 +12,10 @@ dependencies = [
 [tool.setuptools.packages.find]
 where = ["src"]
 
+# Pytest configuration
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
 # Ruff formatting and linting settings
 [tool.ruff]
 line-length = 88
@@ -19,3 +23,11 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
+
+# Mypy type-checking settings
+[tool.mypy]
+python_version = "3.11"
+files = ["src"]
+disallow_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true

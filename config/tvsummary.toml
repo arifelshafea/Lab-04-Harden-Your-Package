@@ -1,0 +1,13 @@
+# TVMaze API settings
+source_url = "https://api.tvmaze.com/shows?page=0"
+timeout = 10
+
+# Folder where generated files will be saved
+output_folder = "data/processed"
+
+# Settings for reproducible featured-show selection
+seed = 42
+sample_size = 5
+
+# Application logging level
+log_level = "INFO"
