@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 # API address used to download the TV show records
 SOURCE_URL = "https://api.tvmaze.com/shows?page=0"
 

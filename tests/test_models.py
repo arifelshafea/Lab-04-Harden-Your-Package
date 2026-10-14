@@ -20,7 +20,7 @@ class TestTVShow(unittest.TestCase):
         self.assertEqual(show.name, "Test Show")
         self.assertEqual(show.genres, ["Drama", "Comedy"])
         self.assertEqual(show.language, "English")
-        self.assertEqual(show.rating, 8.5)   
+        self.assertEqual(show.rating, 8.5)
 
     def test_missing_values(self):
         """Test that missing values are cleaned correctly."""
@@ -36,4 +36,4 @@ class TestTVShow(unittest.TestCase):
         self.assertEqual(show.name, "Unknown")
         self.assertEqual(show.genres, [])
         self.assertIsNone(show.language)
-        self.assertIsNone(show.rating)     
+        self.assertIsNone(show.rating)

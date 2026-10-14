@@ -1,6 +1,7 @@
 # Build the final summary from the TV show records
 import json
 
+
 def build_summary(records, source_url, aggregations):
     """Build the summary using a collection of aggregation objects."""
 
