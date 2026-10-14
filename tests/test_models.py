@@ -1,39 +1,72 @@
-import unittest
-
+import pytest
 from tvsummary.models import TVShow
 
 
-class TestTVShow(unittest.TestCase):
-    """Test the TVShow record class."""
+# Test that a valid TV show record stores its values correctly.
+def test_valid_record():
+    data = {
+        "name": "Test Show",
+        "genres": ["Drama", "Comedy"],
+        "language": "English",
+        "rating": {"average": 8.5},
+    }
 
-    def test_valid_record(self):
-        """Test that a valid record is stored correctly."""
-        data = {
-            "name": "Test Show",
-            "genres": ["Drama", "Comedy"],
-            "language": "English",
-            "rating": {"average": 8.5},
-        }
+    show = TVShow(data)
 
-        show = TVShow(data)
+    assert show.name == "Test Show"
+    assert show.genres == ["Drama", "Comedy"]
+    assert show.language == "English"
+    assert show.rating == 8.5
 
-        self.assertEqual(show.name, "Test Show")
-        self.assertEqual(show.genres, ["Drama", "Comedy"])
-        self.assertEqual(show.language, "English")
-        self.assertEqual(show.rating, 8.5)
 
-    def test_missing_values(self):
-        """Test that missing values are cleaned correctly."""
-        data = {
-            "name": None,
-            "genres": None,
-            "language": None,
-            "rating": None,
-        }
+# Test that missing values are replaced with appropriate defaults.
+def test_missing_values():
+    data = {
+        "name": None,
+        "genres": None,
+        "language": None,
+        "rating": None,
+    }
 
-        show = TVShow(data)
+    show = TVShow(data)
 
-        self.assertEqual(show.name, "Unknown")
-        self.assertEqual(show.genres, [])
-        self.assertIsNone(show.language)
-        self.assertIsNone(show.rating)
+    assert show.name == "Unknown"
+    assert show.genres == []
+    assert show.language is None
+    assert show.rating is None
+
+
+# Test that malformed genres and ratings are handled safely.
+def test_malformed_values():
+    data = {
+        "name": "Another Show",
+        "genres": "Drama",
+        "language": "",
+        "rating": {"average": "Excellent"},
+    }
+
+    show = TVShow(data)
+
+    assert show.genres == []
+    assert show.language is None
+    assert show.rating is None
+
+# Test how TVShow handles different genre inputs.
+@pytest.mark.parametrize(
+    "genres, expected",
+    [
+        (["Drama", "Comedy"], ["Drama", "Comedy"]),
+        (None, []),
+        ("Drama", []),
+        ([], []),
+    ],
+)
+def test_genres_with_different_inputs(genres, expected):
+    data = {
+        "name": "Test Show",
+        "genres": genres,
+    }
+
+    show = TVShow(data)
+
+    assert show.genres == expected
