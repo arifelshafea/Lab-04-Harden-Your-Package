@@ -1,4 +1,5 @@
 import pytest
+
 from tvsummary.models import TVShow
 
 
@@ -50,6 +51,7 @@ def test_malformed_values():
     assert show.genres == []
     assert show.language is None
     assert show.rating is None
+
 
 # Test how TVShow handles different genre inputs.
 @pytest.mark.parametrize(
