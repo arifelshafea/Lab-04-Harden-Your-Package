@@ -88,7 +88,6 @@ def main(argv: list[str] | None = None) -> int:
         # Display a clear error message without a Python traceback.
         print(f"Error: {error}", file=sys.stderr)
         return 1
-        
 
 
 if __name__ == "__main__":

@@ -49,14 +49,10 @@ def test_write_summary_raises_output_error(tmp_path):
 # Test that the same random seed selects the same featured TV shows.
 def test_featured_shows_are_reproducible(sample_shows):
     # Select two featured shows using a fixed random seed.
-    first_selection = select_featured_shows(
-        sample_shows, seed=42, sample_size=2
-    )
+    first_selection = select_featured_shows(sample_shows, seed=42, sample_size=2)
 
     # Repeat the selection with the same records and seed.
-    second_selection = select_featured_shows(
-        sample_shows, seed=42, sample_size=2
-    )
+    second_selection = select_featured_shows(sample_shows, seed=42, sample_size=2)
 
     # Both selections must be identical.
     assert first_selection == second_selection
